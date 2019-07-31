@@ -1,35 +1,42 @@
-const Discord = require('discord.js');
-const client = new Discord.client();
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+const Discord = require("discord.js");
+const client = new Discord.Client();
+var prefix = "+";
+var adminprefix = '#'
 
 
 const developers = ["595653353783033857"]
-const adminprefix = "-";
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!developers.includes(message.author.id)) return;
       
   if (message.content.startsWith(adminprefix + 'ply')) {
     client.user.setGame(argresult);
-      message.channel.send(`**Status You   ${argresult}**`)
+      message.channel.send(`**✅   ${argresult}**`)
   } else 
-  if (message.content.startsWith(adminprefix + 'wat')) {
+     if (message.content === (adminprefix + "leave")) {
+    message.guild.leave();        
+  } else  
+  if (message.content.startsWith(adminprefix + 'st')) {
   client.user.setActivity(argresult, {type:'WATCHING'});
-      message.channel.send(`**Status You   ${argresult}**`)
+      message.channel.send(`**✅   ${argresult}**`)
   } else 
   if (message.content.startsWith(adminprefix + 'lis')) {
   client.user.setActivity(argresult , {type:'LISTENING'});
-      message.channel.send(`**Status You  ${argresult}**`)
+      message.channel.send(`**✅   ${argresult}**`)
   } else 
-  if (message.content.startsWith(adminprefix + 'st')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/M3roof");
-      message.channel.send(`**Status You ${argresult} **`)
+  if (message.content.startsWith(adminprefix + 'sets')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/dream");
+      message.channel.send(`**✅**`)
+  }
+  if (message.content.startsWith(adminprefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.send(`Changing The Name To ..**${argresult}** `)
+} else
+if (message.content.startsWith(adminprefix + 'setava')) {
+  client.user.setAvatar(argresult);
+    message.channel.send(`Changing The Avatar To :**${argresult}** `);
 }
 });
 
 
-
-
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);// لا تغير فيها شيء
